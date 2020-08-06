@@ -141,4 +141,5 @@ Route::get('/administrator/ad/location/{location_id}', 'Api\AdministratorControl
 Route::delete('/administrator/ad/delete/{id}', 'Api\AdministratorController@deleteAd');
 
 Route::post("/message/store", "ChatController@store");
+Route::post("/message/fetch/chat", "ChatController@fetch");
 
