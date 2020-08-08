@@ -101,8 +101,9 @@ class ChatController extends Controller
             $chats = array_unique(array_merge($receiversArray, $sendersArray));
             $chats = array_diff($chats, [$request->userId]);
 
+            $users = User::whereIn("id", $chats)->get();
 
-            return response()->json(["success" => true, "chats" => $chats]);
+            return response()->json(["success" => true, "users" => $users]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
