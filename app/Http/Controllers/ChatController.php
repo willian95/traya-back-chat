@@ -28,8 +28,8 @@ class ChatController extends Controller
                 ->data([
                     'title' => "Atención",
                     'body' => $sender->name." te ha enviado un mensaje",
-                    //"page" => "",
-                    //"hiring_id" => $hiring->id
+                    "type" => "chat",
+                    "bidder_id" => $sender->id
                 ])
                 ->send();
 
