@@ -64,9 +64,9 @@ class ChatController extends Controller
 
             }
             $hasMoreMessages = false;
-            if(Message::whereIn("sender_id", [$request->senderId, $request->receiverId])->whereIn("receiver_id", [$request->receiverId, $request->senderId])->where('id', '<', $lastMessage)->count() > 0){
+            /*if(Message::whereIn("sender_id", [$request->senderId, $request->receiverId])->whereIn("receiver_id", [$request->receiverId, $request->senderId])->where('id', '<', $lastMessage)->count() > 0){
                 $hasMoreMessages = true;
-            }
+            }*/
 
             return response()->json(["success" => true, "messages" => $messages, "lastMessage" => $lastMessage, "hasMoreMessages" => $hasMoreMessages]);
 
