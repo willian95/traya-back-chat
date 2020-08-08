@@ -41,4 +41,32 @@ class ChatController extends Controller
         }
 
     }
+
+    function fetch(Request $request){
+
+        try{
+
+            $lastMessage = null;
+
+            if($request->lastMessage == null){
+                $messages = Message::whereIn("sender_id", [$request->senderId, $request->receiverId])->whereIn("receiver_id", [$request->receiverId, $request->senderId])->take(20)->get();
+                
+                $lastMessage = $messages[0]->id;
+
+            }else{  
+                
+                $messages = Message::whereIn("sender_id", [$request->senderId, $request->receiverId])->whereIn("receiver_id", [$request->receiverId, $request->senderId])->take(20)->where('id', '<', $lastMessage)->get();
+                
+                $lastMessage = $messages[0]->id;
+
+            }
+
+            return response()->json(["success" => true, "messages" => $messages, "lastMessage" => $lastMessage]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
+        }
+
+    }
+
 }
