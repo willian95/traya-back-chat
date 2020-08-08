@@ -56,17 +56,22 @@ class ChatController extends Controller
                 $lastMessage = $messages[0]->id;
 
             }else{  
-                
-                $messages = Message::whereIn("sender_id", [$request->senderId, $request->receiverId])->whereIn("receiver_id", [$request->receiverId, $request->senderId])->take(5)->where('id', '<', $lastMessage)->get();
+                $take = 5;
+                $offset = Message::whereIn("sender_id", [$request->senderId, $request->receiverId])->whereIn("receiver_id", [$request->receiverId, $request->senderId])->where('id', '<', $lastMessage)->count() - $take;                
+                $messages = Message::whereIn("sender_id", [$request->senderId, $request->receiverId])->whereIn("receiver_id", [$request->receiverId, $request->senderId])->offset($offset)->take(5)->where('id', '<', $lastMessage)->get();
                 
                 $lastMessage = $messages[0]->id;
 
             }
+            $hasMoreMessages = false;
+            if(Message::whereIn("sender_id", [$request->senderId, $request->receiverId])->whereIn("receiver_id", [$request->receiverId, $request->senderId])->where('id', '<', $lastMessage)->count() > 0){
+                $hasMoreMessages = true;
+            }
 
-            return response()->json(["success" => true, "messages" => $messages, "lastMessage" => $lastMessage]);
+            return response()->json(["success" => true, "messages" => $messages, "lastMessage" => $lastMessage, "hasMoreMessages" => $hasMoreMessages]);
 
         }catch(\Exception $e){
-            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
+            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor", "stack" => $e]);
         }
 
     }
