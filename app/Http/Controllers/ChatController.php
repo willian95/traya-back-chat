@@ -80,8 +80,8 @@ class ChatController extends Controller
 
         try{    
 
-            $chats1 = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("sender_id")->get();
-            $chats2 = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("receiver_id")->get();
+            $receivers = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->select("receiver_id")->get();
+            $senders = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->select("sender_id"->get();
             return response()->json(["success" => true, "chats" => $chats1, "chats2" => $chats2]);
 
         }catch(\Exception $e){
