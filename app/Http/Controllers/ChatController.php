@@ -88,13 +88,13 @@ class ChatController extends Controller
 
             foreach($receivers as $receiver){
 
-                array_push($receiver->receiver_id, $receiversArray);
+                array_push($receiversArray, $receiver->receiver_id);
 
             }
 
             foreach($senders as $sender){
 
-                array_push($sender->sender_id, $sendersArray);
+                array_push($sendersArray, $sender->sender_id);
 
             }
             
