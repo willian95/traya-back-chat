@@ -80,12 +80,26 @@ class ChatController extends Controller
 
         try{    
 
-            $receivers = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("receiver_id")->select("receiver_id")->get()->toArray();
-            $senders = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("sender_id")->select("sender_id")->get()->toArray();
+            $receiversArray = [];
+            $sendersArray = [];
 
+            $receivers = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("receiver_id")->select("receiver_id")->get();
+            $senders = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("sender_id")->select("sender_id")->get();
+
+            foreach($receivers as $receiver){
+
+                array_push($receiver->receiver_id, $receiversArray);
+
+            }
+
+            foreach($senders as $sender){
+
+                array_push($sender->sender_id, $sendersArray);
+
+            }
             
 
-            return response()->json(["success" => true, "receivers" => $receivers, "senders" => $senders]);
+            return response()->json(["success" => true, "receivers" => $receiversArray, "senders" => $sendersArray]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
