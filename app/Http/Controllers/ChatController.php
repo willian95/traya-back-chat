@@ -99,6 +99,7 @@ class ChatController extends Controller
             }
             
             $chats = array_unique(array_merge($receiversArray, $sendersArray));
+            $chats = array_diff($chats, $request->userId);
 
 
             return response()->json(["success" => true, "chats" => $chats]);
