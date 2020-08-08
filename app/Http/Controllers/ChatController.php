@@ -101,7 +101,7 @@ class ChatController extends Controller
             $chats = array_unique(array_merge($receiversArray, $sendersArray));
             $chats = array_diff($chats, [$request->userId]);
 
-            $users = User::whereIn("id", $chats)->get();
+            $users = User::whereIn("id", $chats)->with("profile")->get();
 
             return response()->json(["success" => true, "users" => $users]);
 
