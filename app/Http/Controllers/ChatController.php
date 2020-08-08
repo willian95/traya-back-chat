@@ -82,7 +82,7 @@ class ChatController extends Controller
 
             $receivers = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->select("receiver_id")->get();
             $senders = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->select("sender_id")->get();
-            return response()->json(["success" => true, "chats" => $chats1, "chats2" => $chats2]);
+            return response()->json(["success" => true, "receivers" => $receivers, "senders" => $senders]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
