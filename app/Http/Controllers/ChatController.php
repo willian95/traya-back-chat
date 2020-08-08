@@ -71,7 +71,20 @@ class ChatController extends Controller
             return response()->json(["success" => true, "messages" => $messages, "lastMessage" => $lastMessage, "hasMoreMessages" => $hasMoreMessages]);
 
         }catch(\Exception $e){
-            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor", "stack" => $e]);
+            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
+        }
+
+    }
+
+    function chats(Request $request){
+
+        try{    
+
+            $chats = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("snder_id", "receiver_id")->get();
+            return response()->json(["success" => true, "chats" => $chats]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
         }
 
     }
