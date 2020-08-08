@@ -98,8 +98,10 @@ class ChatController extends Controller
 
             }
             
+            $chats = array_unique(array_merge($receiversArray, $sendersArray));
 
-            return response()->json(["success" => true, "receivers" => $receiversArray, "senders" => $sendersArray]);
+
+            return response()->json(["success" => true, "chats" => $chats]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
