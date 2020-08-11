@@ -36,7 +36,7 @@ class ChatController extends Controller
 
             
 
-            return response()->json(["success" => true, "message" => $message, "messageTime" => $message->created_at->format('h:m d-m-Y')]);
+            return response()->json(["success" => true, "message" => $message, "messageTime" => $message->created_at->format('H:m d-m-Y')]);
 
         }catch(\Exception $e){
 
@@ -50,6 +50,7 @@ class ChatController extends Controller
         try{
 
             $lastMessage = null;
+            $messageArray = [];
 
             if($request->lastMessage == null){
                 $take = 20;
@@ -71,7 +72,18 @@ class ChatController extends Controller
                 $hasMoreMessages = true;
             }
 
-            return response()->json(["success" => true, "messages" => $messages, "lastMessage" => $lastMessage, "hasMoreMessages" => $hasMoreMessages]);
+            foreach($messages as $message){
+
+                $messageArray[] = [
+
+                    "message" => $message,
+                    "time" => $message->created_at->format("H:m d/m/Y")
+
+                ];
+
+            }
+
+            return response()->json(["success" => true, "messages" => $messageArray, "lastMessage" => $lastMessage, "hasMoreMessages" => $hasMoreMessages]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
