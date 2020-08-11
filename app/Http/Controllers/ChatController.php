@@ -36,7 +36,7 @@ class ChatController extends Controller
 
             
 
-            return response()->json(["success" => true, "message" => $message, "messageTime" => $message->created_at->format('hh:mm d-m-Y')]);
+            return response()->json(["success" => true, "message" => $message, "messageTime" => $message->created_at->format('h:m d-m-Y')]);
 
         }catch(\Exception $e){
 
