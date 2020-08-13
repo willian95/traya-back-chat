@@ -62,7 +62,7 @@ class ChatController extends Controller
             }else{  
                 $take = 20;
                 $offset = Message::whereIn("sender_id", [$request->senderId, $request->receiverId])->whereIn("receiver_id", [$request->receiverId, $request->senderId])->where('id', '<', $request->lastMessage)->count() - $take;                
-                $messages = Message::whereIn("sender_id", [$request->senderId, $request->receiverId])->whereIn("receiver_id", [$request->receiverId, $request->senderId])->offset($offset)->take($take)->where('id', '<', $request->lastMessage)->get();
+                $messages = Message::whereIn("sender_id", [$request->senderId, $request->receiverId])->whereIn("receiver_id", [$request->receiverId, $request->senderId])->offset($offset)->take($take)->where('id', '<', $request->lastMessage)->orderBy('id', 'desc')->get();
                 
                 $lastMessage = $messages[0]->id;
 
