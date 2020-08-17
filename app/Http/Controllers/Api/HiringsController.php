@@ -188,7 +188,7 @@ class HiringsController extends BaseApiController
       $contact->save();
 
       $contactReview = new ContactReview;
-      $contactReview->question_date = Carbon::now()->addMinutes(5);
+      $contactReview->question_date = Carbon::now()->addDays(3);
       $contactReview->user_id = $user->id;
       $contactReview->contact_id = $contact->id;
       $contactReview->service_id = $request->service_id;
