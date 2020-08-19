@@ -534,7 +534,7 @@ class AuthController extends BaseApiController
   function showForm(){
 
     $show = ShowForm::first();
-    return response()->json(["success" => $show]);
+    return response()->json(["success" => $show->show]);
 
   }
 
