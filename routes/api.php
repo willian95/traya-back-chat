@@ -33,6 +33,8 @@ Route::post('administratorsLocation', 'Api\AdministratorController@administrator
 Route::post("user/update/image", 'Api\AuthController@updateImage');
 Route::post("user/update/camera/{user_id}", 'Api\AuthController@updateCamera');
 
+Route::get("/register/count", "AuthController@showForm");
+
 Route::post('updateapk', 'Api\AuthController@updateApk'); //ruta para checkear si el apk es actual
 Route::post('signup', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');

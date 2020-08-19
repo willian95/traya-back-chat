@@ -19,6 +19,7 @@ use App\ServicesUser;
 use App\Service;
 use Illuminate\Support\Str;
 use App\User as User2;
+use App\ShowForm;
 //use Redirect;
 //class AuthController extends Controller
 use \Illuminate\Mail\PendingMail;
@@ -528,6 +529,13 @@ class AuthController extends BaseApiController
     }
     
     return response()->json("success");
+  }
+
+  function showForm(){
+
+    $show = ShowForm::first();
+    return response()->json(["success" => $show]);
+
   }
 
 }
