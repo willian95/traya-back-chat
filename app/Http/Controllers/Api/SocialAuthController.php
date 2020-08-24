@@ -91,6 +91,9 @@ class SocialAuthController extends BaseApiController
     }
 
     function registerSocialAuth($email, $displayName, $userId, $socialAuth){
+
+        return response()->json(["email" => $email, "display" => $displayName, "userId" => $userId, "socialAuth" => $socialAuth]);
+
         try {
             
             $user = new User;
