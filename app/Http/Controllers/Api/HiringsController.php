@@ -598,7 +598,7 @@ class HiringsController extends BaseApiController
           array_push($hiringsArray, $hiring->id);
         }
 
-        dd($hiringsArray);
+        return response()->json($hiringsArray);
 
       }catch(\Exception $e){
 
