@@ -591,6 +591,7 @@ class HiringsController extends BaseApiController
 
       try{
 
+        return response()->json("works");
         $hiringsArray = [];
         $hirings = Hiring::where("applicant_id", $request->user_id)->where("status_id", ">=", 4)->get();
         foreach($hirings as $hiring){
