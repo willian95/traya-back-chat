@@ -23,7 +23,10 @@ class HiringsController extends BaseApiController
 
     public function hiringTransformer($data){
       $hirings=[];
+      $dateLastHistory = null;
+      $timeLastHistory = null;
       foreach($data as $hiring){
+
         $historyStatus=[];
         $timeLastHistory="";
         foreach($hiring->history as $history){
@@ -35,6 +38,7 @@ class HiringsController extends BaseApiController
             'created_at' =>$history->created_at->format('d-m-Y'),
             'created_at_time' =>$history->created_at->format('H:i:s')
           ];
+          
           $dateLastHistory=$history->created_at->format('d-m-Y');
           $timeLastHistory=$history->created_at->format('H:i:s');
         }//foreach history statuses
