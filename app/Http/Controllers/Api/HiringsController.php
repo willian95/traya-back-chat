@@ -587,6 +587,26 @@ class HiringsController extends BaseApiController
 
     }
 
+    public function deleteAllHistories(Request $request){
+
+      try{
+
+        $hiringsArray = [];
+        $hirings = Hiring::where("applicant_id", $request->user_id)->where("status_id", ">=", 4)->get();
+        foreach($hirings as $hiring){
+          array_push($hiringsArray, $hiring->id);
+        }
+
+        dd($hiringsArray);
+
+      }catch(\Exception $e){
+
+        return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage()]);
+
+      }
+
+    }
+
     public function countActiveHiring(Request $request){
 
       //return response()->json("hola");

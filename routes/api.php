@@ -83,6 +83,8 @@ Route::post("/favorite/store", "Api\FavoriteController@store");
 Route::post("/favorite/check", "Api\FavoriteController@check");
 Route::post("/favorite/delete", "Api\FavoriteController@delete");
 
+Route::post("/hiring-history/delete-all", 'Api\HiringsController@deleteAllHistories');
+
 Route::group(['middleware'=>'jwt.auth'], function () {
 
   Route::post('/changeAddress', 'Api\AuthController@changeAddress');
