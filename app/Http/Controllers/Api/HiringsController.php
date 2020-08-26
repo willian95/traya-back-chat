@@ -597,7 +597,7 @@ class HiringsController extends BaseApiController
           array_push($hiringsArray, $hiring->id);
         }
 
-        //HiringHistory::whereIn("hiring_id", $hiringsArray)->delete();
+        HiringHistory::whereIn("hiring_id", $hiringsArray)->delete();
 
         return response()->json(["success" => true]);
 
