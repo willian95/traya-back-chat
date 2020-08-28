@@ -77,7 +77,7 @@ class ChatController extends Controller
                 $messageArray[] = [
 
                     "message" => $message,
-                    "time" => $message->created_at->format("h:m d/m/Y")
+                    "time" => $message->created_at->format("H:i d/m/Y")
 
                 ];
 
