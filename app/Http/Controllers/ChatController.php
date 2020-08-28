@@ -193,9 +193,7 @@ class ChatController extends Controller
                 $receivers = Message::where("sender_id", $request->user_id)->orWhere("receiver_id", $request->user_id)->groupBy("receiver_id")->select("receiver_id")->get();
                 $senders = Message::where("sender_id", $request->user_id)->orWhere("receiver_id", $request->user_id)->groupBy("sender_id")->select("sender_id")->get();
 
-                return response()->json($receivers);
-
-                /*foreach($receivers as $receiver){
+                foreach($receivers as $receiver){
 
                     array_push($receiversArray, $receiver->receiver_id);
 
@@ -205,10 +203,9 @@ class ChatController extends Controller
 
                     array_push($sendersArray, $sender->sender_id);
 
-                }*/
+                }
 
-                
-
+                return response()->json(["receivers" => $receiversArray, "senders" => $sendersArray]);
                 //Message::whereIn("sender_id", $reques)->orWhere("receiver_id", $request->sender_id)->delete();
                 //return response()->json(["success" => true]);
 
