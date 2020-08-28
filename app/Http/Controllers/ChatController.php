@@ -187,7 +187,7 @@ class ChatController extends Controller
 
                 return response()->json(["type" => $request->type]);
 
-                $receiversArray = [];
+                /*$receiversArray = [];
                 $sendersArray = [];
 
                 $receivers = Message::where("sender_id", $request->user_id)->orWhere("receiver_id", $request->user_id)->groupBy("receiver_id")->select("receiver_id")->get();
@@ -203,7 +203,7 @@ class ChatController extends Controller
 
                     array_push($sendersArray, $sender->sender_id);
 
-                }
+                }*/
 
                 
 
@@ -211,6 +211,8 @@ class ChatController extends Controller
                 //return response()->json(["success" => true]);
 
             }
+
+            return response()->json($request->all());
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
