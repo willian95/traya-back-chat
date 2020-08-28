@@ -161,7 +161,7 @@ class ChatController extends Controller
 
             }
 
-            dd($receivers, $senders);
+            dd($receiversArray, $sendersArray);
 
             //Message::whereIn("sender_id", $reques)->orWhere("receiver_id", $request->sender_id)->delete();
             //return response()->json(["success" => true]);
