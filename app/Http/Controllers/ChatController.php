@@ -185,13 +185,15 @@ class ChatController extends Controller
             
             }else if($request->type == "all"){
 
-                return response()->json(["type" => $request->type]);
+                
 
                 $receiversArray = [];
                 $sendersArray = [];
 
                 $receivers = Message::where("sender_id", $request->user_id)->orWhere("receiver_id", $request->user_id)->groupBy("receiver_id")->select("receiver_id")->get();
                 $senders = Message::where("sender_id", $request->user_id)->orWhere("receiver_id", $request->user_id)->groupBy("sender_id")->select("sender_id")->get();
+
+                return response()->json($receivers);
 
                 /*foreach($receivers as $receiver){
 
