@@ -178,8 +178,35 @@ class ChatController extends Controller
 
         try{
 
-            Message::whereIn("sender_id", [$request->user_id, $request->receiver_id])->whereIn("receiver_id", [$request->user_id, $request->receiver_id])->delete();
-            return response()->json(["success" => true]);
+            if($request->type == "one"){
+                Message::whereIn("sender_id", [$request->user_id, $request->receiver_id])->whereIn("receiver_id", [$request->user_id, $request->receiver_id])->delete();
+                return response()->json(["success" => true]);
+            }else if($request->type == "all"){
+                
+                $receiversArray = [];
+                $sendersArray = [];
+
+                $receivers = Message::where("sender_id", $request->user_id)->orWhere("receiver_id", $request->user_id)->groupBy("receiver_id")->select("receiver_id")->get();
+                $senders = Message::where("sender_id", $request->user_id)->orWhere("receiver_id", $request->user_id)->groupBy("sender_id")->select("sender_id")->get();
+
+                foreach($receivers as $receiver){
+
+                    array_push($receiversArray, $receiver->receiver_id);
+
+                }
+
+                foreach($senders as $sender){
+
+                    array_push($sendersArray, $sender->sender_id);
+
+                }
+
+                dd($receiversArray);
+
+                //Message::whereIn("sender_id", $reques)->orWhere("receiver_id", $request->sender_id)->delete();
+                //return response()->json(["success" => true]);
+
+            }
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
