@@ -102,6 +102,18 @@ class FavoriteController extends BaseApiController
                 $us['averageRatingInt']=(int)$averageRating;
                 $us['ratingPercent']=$us->ratingPercent(5);
                 $us['services_text']=$services_text;
+                $comments=Hiring::where('bidder_id',$us->id)->where('status_id',4)->with('latestHistory')->get();
+                $arrayComments=[];
+                foreach($comments as $com){
+                    $arrayComments[]=[
+                        'userName'=>$com->latestHistory->user->name,
+                        'userEmail'=>$com->latestHistory->user->email,
+                        'comment'=>$com->latestHistory->comment,
+                        'created_at_date'=>$com->latestHistory->created_at->format('d-m-Y'),
+                        'created_at_time'=>$com->latestHistory->created_at->format('H:i:s'),
+                    ];
+                }
+                $us['comments']=$arrayComments;
                 
               }
 
