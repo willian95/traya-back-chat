@@ -596,12 +596,27 @@ class HiringsController extends BaseApiController
       try{
 
         $hiringsArray = [];
-        $hirings = Hiring::where("applicant_id", $request->user_id)->where("status_id", ">=", 4)->get();
-        foreach($hirings as $hiring){
-          array_push($hiringsArray, $hiring->id);
+        if($request->user_rol == 1){
+          
+          $hirings = Hiring::where("applicant_id", $request->user_id)->where("status_id", ">=", 4)->get();
+          foreach($hirings as $hiring){
+            array_push($hiringsArray, $hiring->id);
+          }
+
+          Hiring::where("applicant_id", $request->user_id)->where("status_id", ">=", 4)->delete();
+        
+        }else if($request->user_rol == 2){
+
+          $hirings = Hiring::where("bidder_id", $request->user_id)->where("status_id", ">=", 4)->get();
+          foreach($hirings as $hiring){
+            array_push($hiringsArray, $hiring->id);
+          }
+
+          Hiring::where("bidder_id", $request->user_id)->where("status_id", ">=", 4)->delete();
+
         }
 
-        Hiring::where("applicant_id", $request->user_id)->where("status_id", ">=", 4)->delete();
+        
         HiringHistory::whereIn("hiring_id", $hiringsArray)->delete();
 
         return response()->json(["success" => true]);
