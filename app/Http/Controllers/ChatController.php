@@ -205,9 +205,11 @@ class ChatController extends Controller
 
                 }
 
-                return response()->json(["receivers" => $receiversArray, "senders" => $sendersArray]);
+                Message::whereIn("sender_id", $senders)->where("receiver_id", $request->user_id)->delete();
+                Message::whereIn("receiver_id", $receivers)->where("sender_id", $request->user_id)->delete();
+                Message::where("sender_id", $request->user_id)->orWhere("receiver_id", $request->user_id)->delete();
                 //Message::whereIn("sender_id", $reques)->orWhere("receiver_id", $request->sender_id)->delete();
-                //return response()->json(["success" => true]);
+                return response()->json(["success" => true]);
 
             }
 
