@@ -139,6 +139,19 @@ class ChatController extends Controller
 
     }
 
+    function deleteAll(Request $request){
+
+        try{
+
+            Message::where("sender_id", $request->user_id)->orWhere("receiver_id", $request->sender_id)->delete();
+            return response()->json(["success" => true]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
+        }
+
+    }
+
     function deleteConversation(Request $request){
 
         try{

@@ -149,5 +149,6 @@ Route::post("/message/store", "ChatController@store");
 Route::post("/message/fetch/chat", "ChatController@fetch");
 Route::post("/message/delete", "ChatController@deleteMessage");
 Route::post("/message/conversation/delete", "ChatController@deleteConversation");
+Route::post("/message/delete/all", "ChatController@deleteAll");
 Route::post("/my-chats", "ChatController@chats");
 
