@@ -179,10 +179,14 @@ class ChatController extends Controller
         try{
 
             if($request->type == "one"){
+                
                 Message::whereIn("sender_id", [$request->user_id, $request->receiver_id])->whereIn("receiver_id", [$request->user_id, $request->receiver_id])->delete();
                 return response()->json(["success" => true]);
+            
             }else if($request->type == "all"){
-                
+
+                return response()->json(["type" => $request->type]);
+
                 $receiversArray = [];
                 $sendersArray = [];
 
@@ -201,7 +205,7 @@ class ChatController extends Controller
 
                 }
 
-                dd($receiversArray);
+                
 
                 //Message::whereIn("sender_id", $reques)->orWhere("receiver_id", $request->sender_id)->delete();
                 //return response()->json(["success" => true]);
