@@ -136,7 +136,9 @@ class AdministratorController extends BaseApiController
         try{
 
             $randomCode=Str::random(15);
-            saveImage($request->file,'ads/'.$randomCode.'.jpg');
+            $path = saveImage($request->file,'ads/'.$randomCode.'.jpg');
+
+            return response()->json($path);
 
             //$data = getimagesize('ads/'.$randomCode.'.jpg');
             //if(($request->ad_type_id == 1 && $data[0] == 379 && $data[1] == 90) || ($request->ad_type_id == 2 && $data[0] == 379 && $data[1] == 180) || ($request->ad_type_id == 3 && $data[0] == 379 && $data[1] == 270)){
