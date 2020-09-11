@@ -39,7 +39,7 @@ class RegisterFormRequest extends FormRequest
     return [
       // cart id
       'email.unique' => "El correo electrónico ya esta en uso. Elige otro distinto",
-
+      'password.min' => "La contraseña debe tener como mínimo 6 caracteres "
     ];
   }
 }
