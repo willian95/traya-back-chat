@@ -11,7 +11,7 @@ class FCMController extends Controller
     function sendNotification(){
 
         fcm()
-            ->to(["fNPJIEAX8t4:APA91bHimxfVWK2qP4GuNHvwN34l0Y-NlFTuwBIzyVkRlwlwFDTLIWZu1vsIttb7_qmBTirAJWBICngF954EiQJvb88UXrPovm6tm7r5BPfJhV2JAgb-cMlFvbF2v4GpSOMxsMxv_jbh", "fIi6NB2iza0:APA91bHxswZh58kWO8h-THbxVMq5TQqr6gSuJmvZlkc5romVCEWQqXj1VBFBxlJzEsjoSaEtDTl9XH8ioUlzMlHNLAzTtEMrkQteDCRAFkXhvlVFSq-MAjD80cL6V6HDScQlEcR6ptKs"])
+            ->to(["cojqYdb9eEc:APA91bGql5pUfB7kV4MzqmTmhpm3O1raaQPlfxxS93k5AxzwLf8mfsQMGC2Na-kUOPRcxhoGPHEtwYBOtc7culB5_IK8gyUmCZ9zcONThaG6PNDvM_ugkvFdGJrG41S3QPlcKPjXrgte"])
             ->notification([
                 'title' => "test",
                 'body' => "test"
