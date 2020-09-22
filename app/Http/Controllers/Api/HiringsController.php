@@ -237,7 +237,7 @@ class HiringsController extends BaseApiController
              'is_worker' => true
            ]);
 
-           $deviceToken = User::where('id', $request->bidder_id)->pluck('device_token')->toArray();
+           $deviceToken = User::where('id', $usr->id)->pluck('device_token')->toArray();
 
            fcm()
                ->to($deviceToken)
