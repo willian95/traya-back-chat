@@ -238,7 +238,7 @@ class HiringsController extends BaseApiController
            ]);
 
            $deviceToken = User::where('id', $usr->id)->pluck('device_token')->toArray();
-
+            return response()->json($deviceToken);
            fcm()
                ->to($deviceToken)
                ->data([
