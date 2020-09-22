@@ -216,6 +216,7 @@ class HiringsController extends BaseApiController
          $users=User::query();
          $users->whereIn('id',$request->users);
          $users=$users->get();
+
          foreach($users as $usr){
            $hiring=Hiring::create([
              'bidder_id'=>$usr->id,
@@ -237,22 +238,23 @@ class HiringsController extends BaseApiController
              'is_worker' => true
            ]);
 
-           $deviceToken = User::where('id', $usr->id)->pluck('device_token')->toArray();
-            return response()->json($deviceToken);
-           fcm()
-               ->to($deviceToken)
-               ->data([
-                  'title' => "Atención",
-                  'body' => "Hola, ".$hiring->applicant->name." quiere contratarte para el servicio ".$hiring->service->name.", está a la espera tu respuesta",
-                  "page" => "hiring",
-                  "hiring_id" => $hiring->id
-               ])
-               ->send();
-
            
            /*event(new \App\Events\HiringApplicant('Hola, '.$hiring->applicant->name.' quiere contratarte para el servicio '.$hiring->service->name.', está a la espera tu respuesta.',$usr->id,$hiring));
            \Log::info('User id to notification'.$usr->id);*/
          }
+
+         $deviceToken = User::whereIn('id',$request->users)->pluck('device_token')->toArray();
+            
+          fcm()
+              ->to($deviceToken)
+              ->data([
+                'title' => "Atención",
+                'body' => "Hola, ".$hiring->applicant->name." quiere contratarte para el servicio ".$hiring->service->name.", está a la espera tu respuesta",
+                "page" => "hiring",
+                "hiring_id" => $hiring->id
+              ])
+              ->send();
+
          $response=[
            'msg'=>'¡Genial! lo has contratado.'
          ];
