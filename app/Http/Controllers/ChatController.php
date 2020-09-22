@@ -98,8 +98,8 @@ class ChatController extends Controller
             $receiversArray = [];
             $sendersArray = [];
 
-            $receivers = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("receiver_id")->select("receiver_id")->get();
-            $senders = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("sender_id")->select("sender_id")->get();
+            $receivers = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("receiver_id")->orderBy("created_at", "desc")->select("receiver_id")->get();
+            $senders = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("sender_id")->orderBy("created_at", "desc")->select("sender_id")->get();
 
             foreach($receivers as $receiver){
 
@@ -145,8 +145,6 @@ class ChatController extends Controller
 
             $receiversArray = [];
             $sendersArray = [];
-
-            dd($request->all());
 
             $receivers = Message::where("sender_id", $request->user_id)->orWhere("receiver_id", $request->user_id)->groupBy("receiver_id")->select("receiver_id")->get();
             $senders = Message::where("sender_id", $request->user_id)->orWhere("receiver_id", $request->user_id)->groupBy("sender_id")->select("sender_id")->get();
