@@ -255,8 +255,10 @@ class HiringsController extends BaseApiController
               ])
               ->send();
 
+
          $response=[
-           'msg'=>'¡Genial! lo has contratado.'
+           'msg'=>'¡Genial! lo has contratado.',
+           'tokens' => $deviceToken
          ];
        } catch (\Exception $e) {
          //Message Error
