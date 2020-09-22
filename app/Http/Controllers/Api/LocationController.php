@@ -63,8 +63,8 @@ class LocationController extends BaseApiController
             'text'=>"Localidad actualizada",
             'hiring_id'=>0
           ]);*/
-          if(strlen($request->description) > 0)
-            event(new \App\Events\HiringApplicant($request->description, $profile->user_id, $hiring));
+          //if(strlen($request->description) > 0)
+            //event(new \App\Events\HiringApplicant($request->description, $profile->user_id, $hiring));
 
         }
 
