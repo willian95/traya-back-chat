@@ -102,23 +102,20 @@ class ChatController extends Controller
             $senders = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("sender_id")->orderBy("created_at", "desc")->select("sender_id")->get();
 
             foreach($receivers as $receiver){
-
                 array_push($receiversArray, $receiver->receiver_id);
-
             }
 
             foreach($senders as $sender){
-
                 array_push($sendersArray, $sender->sender_id);
-
             }
             
             $chats = array_unique(array_merge($receiversArray, $sendersArray));
             $chats = array_diff($chats, [$request->userId]);
 
             $users = User::whereIn("id", $chats)->with("profile")->get();
+            $messages = Message::whereIn("sender_id", $chats)->orWhereIn("receiver_id", $chats)->orderBy("created_at", "desc")->get();
 
-            return response()->json(["success" => true, "users" => $users]);
+            return response()->json(["success" => true, "users" => $users, "messages" => $messages]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
