@@ -119,7 +119,7 @@ class ChatController extends Controller
 
                 $usersArray[] = [
                     "user" => $user,
-                    "last_message" => Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->orderBy("created_at", "desc")->first()->created_at
+                    "last_message" => Message::where("sender_id", $user->id)->orWhere("receiver_id", $user->id)->orderBy("created_at", "desc")->first()->created_at
                 ];
 
             }
