@@ -126,7 +126,7 @@ class ChatController extends Controller
 
             $usersArray = collect($usersArray)->sortByDesc('last_message')->values();
 
-            return response()->json(["success" => true, "users" => $users, "messages" => $usersArray]);
+            return response()->json(["success" => true, "users" => $usersArray]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
