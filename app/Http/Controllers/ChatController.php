@@ -97,6 +97,7 @@ class ChatController extends Controller
 
             $receiversArray = [];
             $sendersArray = [];
+            $usersArray = [];
 
             $receivers = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("receiver_id")->orderBy("created_at", "desc")->select("receiver_id")->get();
             $senders = Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->groupBy("sender_id")->orderBy("created_at", "desc")->select("sender_id")->get();
@@ -113,9 +114,17 @@ class ChatController extends Controller
             $chats = array_diff($chats, [$request->userId]);
 
             $users = User::whereIn("id", $chats)->with("profile")->get();
-            $messages = Message::whereIn("sender_id", $chats)->orWhereIn("receiver_id", $chats)->orderBy("created_at", "desc")->get();
 
-            return response()->json(["success" => true, "users" => $users, "messages" => $messages]);
+            foreach($users as $user){
+
+                $usersArray[] = [
+                    "user" => $user,
+                    "last_message" => Message::where("sender_id", $request->userId)->orWhere("receiver_id", $request->userId)->orderBy("created_at", "desc")->first()->created_at
+                ]
+
+            }
+
+            return response()->json(["success" => true, "users" => $users, "messages" => $usersArray]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
