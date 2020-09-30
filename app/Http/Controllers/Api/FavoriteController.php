@@ -71,7 +71,7 @@ class FavoriteController extends BaseApiController
                 array_push($userArray, $user->user_id);
             }
             
-            $usr = User::whereIn("id", $userArray)->with("profile", "services")->get();
+            $usr = User::whereIn("id", $userArray)->with("profile", "services")->orderBy("name")->get();
 
             foreach($usr as &$us){
 
