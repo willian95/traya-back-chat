@@ -112,7 +112,7 @@ class ServicesUserController extends BaseApiController
       $min = 0;
       $i = 0;
 
-       $sorted = $collection->sortByDesc('completed_services')->sortByDesc('averageRatingInt');
+       $sorted = $collection->sortByDesc('completed_services');
       //$sorted = $collection->sortBy('name');
 
       //$response=['data'=>$sorted->values()->all()];
