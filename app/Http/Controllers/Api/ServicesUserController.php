@@ -70,7 +70,7 @@ class ServicesUserController extends BaseApiController
       if(isset($filters->name))
         $usr->where('name', 'like', "%$filters->name%");
       $usr->orderBy('name','ASC');
-      $usr=$usr->with(['profile'])->orderBy("averageRating", "desc")->get();
+      $usr=$usr->with(['profile'])->get();
       //$usr=$usr->with(['profile'])->toSql();
 
       
