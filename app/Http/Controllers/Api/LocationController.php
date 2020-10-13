@@ -64,7 +64,7 @@ class LocationController extends BaseApiController
 
         }
 
-        return response()->json(User::where("id", 437)->first());
+        //return response()->json(User::where("id", 437)->first());
 
         $devicesArray=[];
 
