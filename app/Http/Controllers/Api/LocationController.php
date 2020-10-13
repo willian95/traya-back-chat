@@ -43,10 +43,10 @@ class LocationController extends BaseApiController
     public function updateLocation($id,Request $request){
       try {
          
-        //$this->validateRequestApi(new UpdateLocationRequest($request->all()));
+        $this->validateRequestApi(new UpdateLocationRequest($request->all()));
         $data=$request->all();
-        //unset($data['_method']);
-        //unset($data['token']);
+        unset($data['_method']);
+        unset($data['token']);
         $location=Location::where('id','!=',$id)->where('name',$request->name)->first();
         if(!$location)
         Location::where('id',$id)->update($data);
