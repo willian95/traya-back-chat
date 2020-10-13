@@ -160,7 +160,7 @@ class HiringsController extends BaseApiController
         fcm()
             ->to($deviceToken)
             ->data([
-                'title' => "Atención",
+                'title' => "📍Atención Comunidad Traya",
                 'body' => "Hola, ".$hiring->applicant->name." quiere contratarte para el servicio ".$hiring->service->name.", está a la espera tu respuesta",
                 "page" => "hiring",
                 "hiring_id" => $hiring->id
@@ -248,7 +248,7 @@ class HiringsController extends BaseApiController
           fcm()
               ->to($deviceToken)
               ->data([
-                'title' => "Atención",
+                'title' => "📍Atención Comunidad Traya",
                 'body' => "Hola, ".$hiring->applicant->name." quiere contratarte para el servicio ".$hiring->service->name.", está a la espera tu respuesta",
                 "page" => "hiring",
                 "hiring_id" => $hiring->id
@@ -388,7 +388,7 @@ class HiringsController extends BaseApiController
           fcm()
             ->to($deviceToken)
             ->data([
-                'title' => "Atención",
+                'title' => "📍Atención Comunidad Traya",
                 'body' => '¡Felicitaciones! Has sido contratado por '.$hiring->applicant->name.' para el servicio '.$hiring->service->name.'.',
                 "page" => "hiring",
                 "hiring_id" => $hiring->id
@@ -547,7 +547,7 @@ class HiringsController extends BaseApiController
           fcm()
             ->to($deviceToken)
             ->data([
-                'title' => "Atención",
+                'title' => "📍Atención Comunidad Traya",
                 'body' => $hiring->applicant->name." ha permitido que accedas a ver su ubicación, en la pantalla de solicitudes particulares verás el destino en Google Maps",
                 "page" => "hiring",
                 "hiring_id" => $hiring->id
@@ -565,7 +565,7 @@ class HiringsController extends BaseApiController
           fcm()
             ->to($deviceToken)
             ->data([
-                'title' => "Atención",
+                'title' => "📍Atención Comunidad Traya",
                 'body' => $hiring->bidder->name." ha permitido que accedas a ver su ubicación, en la pantalla de solicitudes particulares verás el destino en Google Maps",
                 "page" => "hiring",
                 "hiring_id" => $hiring->id 
