@@ -82,7 +82,7 @@ class LocationController extends BaseApiController
         e3oKKv8rd80:APA91bEL2wQVFc8reZNqNFgtmhimeC7VMzHbPf4i6Nqy5O0ha1aoHoijV-VRYsA12Bof0X74t5diz8m9biXbhyOSRUI0nke2XqYS5Uto4OaUVx9RAcJbYwZ-IhKyIbkTytTw_278bcMX
         */
         fcm()
-            ->to(["e3oKKv8rd80:APA91bEL2wQVFc8reZNqNFgtmhimeC7VMzHbPf4i6Nqy5O0ha1aoHoijV-VRYsA12Bof0X74t5diz8m9biXbhyOSRUI0nke2XqYS5Uto4OaUVx9RAcJbYwZ-IhKyIbkTytTw_278bcMX"])
+            ->to([$devicesArray])
             ->notification([
               'title' => "📍Atención Comunidad Traya",
               'body' => $request->description,
