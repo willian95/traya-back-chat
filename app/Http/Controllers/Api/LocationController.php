@@ -75,7 +75,7 @@ class LocationController extends BaseApiController
         }
 
 
-
+        return response()->json($devicesArray);
         //return response()->json($devicesArray);
         fcm()
             ->to($devicesArray)
