@@ -53,20 +53,24 @@ class LocationController extends BaseApiController
           'msg'=>'Actualización exitosa',
         ];
 
+        $user_array_id = [];
         $profiles = Profile::where('location_id', $id)->get();
-        $hiring = Hiring::first();
 
         foreach($profiles as $profile){
 
-          /*Notification::create([
-            'user_id'=>$profile->user_id,
-            'text'=>"Localidad actualizada",
-            'hiring_id'=>0
-          ]);*/
-          //if(strlen($request->description) > 0)
-            //event(new \App\Events\HiringApplicant($request->description, $profile->user_id, $hiring));
+          array_push($user_array_id, $profile->id);
 
         }
+
+        $devices = User::whereIn("id", $user_array_id)->get()->toArray();
+
+        fcm()
+            ->to($devices)
+            ->notification([
+              'title' => "📍Atención Comunidad Traya",
+              'body' => $request->description,
+            ])
+            ->send();
 
       } catch (\Exception $e) {
         //Message Error
