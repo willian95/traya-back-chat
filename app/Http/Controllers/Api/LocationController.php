@@ -11,6 +11,7 @@ use App\Profile;
 use App\Hiring;
 use App\Http\Requests\CreateLocationRequest;
 use App\Http\Requests\UpdateLocationRequest;
+use App\User;
 
 class LocationController extends BaseApiController
 {
