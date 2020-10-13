@@ -129,12 +129,14 @@ Route::group(['middleware'=>'jwt.auth'], function () {
   Route::post('locations', 'Api\LocationController@store');
   //buscar localidad
   Route::get('location/{id}', 'Api\LocationController@find');
-  //Actualizar una localidad
-  Route::put('locations/{id}', 'Api\LocationController@update');
+  /
   //Eliminar una localidad
   Route::delete('locations/{id}', 'Api\LocationController@delete');
 
 });//middle auth
+
+  /Actualizar una localidad
+  Route::put('locations/{id}', 'Api\LocationController@update');
 
 //Publicidad
 Route::post('/ads', 'Api\AdsController@index');
