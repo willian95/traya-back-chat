@@ -42,6 +42,7 @@ class LocationController extends BaseApiController
 
     public function update($id,Request $request){
       try {
+          dd($request->all());
         $this->validateRequestApi(new UpdateLocationRequest($request->all()));
         $data=$request->all();
         unset($data['_method']);
