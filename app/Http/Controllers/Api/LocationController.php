@@ -64,8 +64,19 @@ class LocationController extends BaseApiController
 
         }
 
-        $devices = User::whereIn("id", $user_array_id)->select("device_token")->get()->toArray();
-        return response()->json($devices);
+        $devicesArray=[];
+
+        $devices = User::whereIn("id", $user_array_id)->whereNotNull("device_token")->get();
+
+        foreach($devices as $device){
+
+          array_push($devicesArray, $device->device_token);
+
+        }
+
+
+
+        return response()->json($devicesArray);
         fcm()
             ->to($devices)
             ->notification([
