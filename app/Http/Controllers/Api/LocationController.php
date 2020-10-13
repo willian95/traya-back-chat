@@ -65,7 +65,7 @@ class LocationController extends BaseApiController
         }
 
         $devices = User::whereIn("id", $user_array_id)->get()->toArray();
-
+        dd($devices);
         fcm()
             ->to($devices)
             ->notification([
