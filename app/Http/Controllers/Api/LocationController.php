@@ -64,7 +64,7 @@ class LocationController extends BaseApiController
 
         }
 
-        return response()->json($user_array_id);
+        //return response()->json($user_array_id);
 
         $devicesArray=[];
 
