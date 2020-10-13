@@ -136,7 +136,7 @@ Route::group(['middleware'=>'jwt.auth'], function () {
 });//middle auth
 
   //Actualizar una localidad
-  Route::post('locations-update/{id}', 'Api\LocationController@updateLocation');
+  Route::post('update_locality/{id}', 'Api\LocationController@updateLocation');
 
 //Publicidad
 Route::post('/ads', 'Api\AdsController@index');
