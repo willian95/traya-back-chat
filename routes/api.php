@@ -129,7 +129,7 @@ Route::group(['middleware'=>'jwt.auth'], function () {
   Route::post('locations', 'Api\LocationController@store');
   //buscar localidad
   Route::get('location/{id}', 'Api\LocationController@find');
-  /
+  
   //Eliminar una localidad
   Route::delete('locations/{id}', 'Api\LocationController@delete');
 
