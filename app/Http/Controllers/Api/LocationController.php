@@ -88,7 +88,8 @@ class LocationController extends BaseApiController
               'msg'=>'Actualización exitosa',
               "devices" => $devicesArray,
               "users" => $devices,
-              "profiles" => $profiles
+              "profiles" => $profiles,
+              "userArray" => $user_array_id
             ];
 
       } catch (\Exception $e) {
