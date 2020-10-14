@@ -76,7 +76,7 @@ class LocationController extends BaseApiController
         }
        
         fcm()
-            ->to([$deviceToken])
+            ->to($devicesArray)
             ->notification([
               'title' => "📍Atención Comunidad Traya",
               'body' => $request->description,
