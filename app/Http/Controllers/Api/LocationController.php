@@ -58,7 +58,7 @@ class LocationController extends BaseApiController
 
         foreach($profiles as $profile){
 
-          array_push($user_array_id, $profile->id);
+          array_push($user_array_id, $profile->user_id);
 
         }
 
