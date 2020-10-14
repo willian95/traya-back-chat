@@ -86,7 +86,8 @@ class LocationController extends BaseApiController
 
             $response=[
               'msg'=>'Actualización exitosa',
-              "devices" => $devicesArray
+              "devices" => $devicesArray,
+              "users" => $devices
             ];
 
       } catch (\Exception $e) {
