@@ -31,6 +31,19 @@ class ClaimController extends Controller
                     $claimImage->image = $path;
                     $claimImage->save();
                 }
+
+                $data = ["description" => $claim->description, "images" => Claim::where("claim_id", $claim->id)->get()]-
+                $to_name = "Admin";
+                $to_email = "rodriguezwillian95@gmail.com";
+
+                \Mail::send("emails.claim", $data, function($message) use ($to_name, $to_email) {
+
+                    $message->to($to_email, $to_name)->subject("¡Línea de reclamo!");
+                    $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+    
+                });
+            
+                return response()->json(["msg" => "Reclamo enviado"]);
             
             }else{
 
