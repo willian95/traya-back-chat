@@ -33,12 +33,20 @@ Route::get('/terminos-condiciones', function () {
   // return redirect('/login');
 });
 
-Route::get('/users/statistics', function(){
+/*Route::get('/users/statistics', function(){
 
   $users = App\User::select("locations.name as location_name", "users.email", "users.name", "profiles.phone", "users.id", "profiles.domicile", "users.created_at")->join('profiles', "profiles.user_id", '=', "users.id")->join('locations', 'profiles.location_id', '=', "locations.id")->orderBy('users.created_at', 'desc')->get();
   return view("users", ["users" => $users]);
 
 });
+
+
+Route::get('/contact/statistics', function(){
+
+  $contacts = App\Contacts::with("caller", "receiver", "caller.profile", "receiver.profile")->whereBetween("created_at", [date('2020-08-01'), date('2020-10-17')])->get();
+  return view("contact", ["contacts" => $contacts]);
+
+});*/
 
 Route::get('traya-backend/public/api/fcm/test', 'FCMController@sendNotification');
 
