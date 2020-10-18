@@ -139,6 +139,7 @@ Route::group(['middleware'=>'jwt.auth'], function () {
   Route::post('update_locality/{id}', 'Api\LocationController@updateLocation');
 
   Route::post("/claim/store","ClaimController@store");
+  Route::get("/claim/number", "ClaimController@getClaimNumber");
 
 
 //Publicidad
