@@ -75,4 +75,10 @@ class ClaimController extends Controller
 
     }
 
+    function getClaimNumber(){
+
+        return response()->json(["number" => str_pad(Claim::count() + 1,4,"0")]);
+
+    }
+
 }
