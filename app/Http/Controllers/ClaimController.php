@@ -38,20 +38,36 @@ class ClaimController extends Controller
 
                 \Mail::send("emails.claim", $data, function($message) use ($to_name, $to_email) {
 
-                    $message->to($to_email, $to_name)->subject("¡Línea de reclamo!");
+                    $message->to($to_email, $to_name)->subject("¡Reclamo!");
                     $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
     
                 });
             
-                return response()->json(["msg" => "Reclamo enviado"]);
+                return response()->json(["success" => true, "msg" => "Reclamo enviado"]);
             
             }else{
 
-                
+                $claim = new Claim;
+                $claim->description = $request->description;
+                $claim->claim_number = Claim::count() + 1;
+                $claim->save();
+
+                $data = ["description" => $claim->description, "images" => []];
+                $to_name = "Admin";
+                $to_email = "rodriguezwillian95@gmail.com";
+
+                \Mail::send("emails.claim", $data, function($message) use ($to_name, $to_email) {
+
+                    $message->to($to_email, $to_name)->subject("Sugerencia!");
+                    $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+    
+                });
+            
+                return response()->json(["success" => true, "msg" => "Sugerencia enviada"]);
 
             }
 
-            return response()->json(["success" => true, "msg" => "Reclamo realizado"]);
+    
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" =>  "Hubo un problema", "err" => $e->getMessage(), "ln" => $e->getLine()]);
