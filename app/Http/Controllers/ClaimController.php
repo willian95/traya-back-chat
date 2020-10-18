@@ -32,7 +32,7 @@ class ClaimController extends Controller
                     $claimImage->save();
                 }
 
-                $data = ["description" => $claim->description, "images" => ClaimImage::where("claim_id", $claim->id)->get()]-
+                $data = ["description" => $claim->description, "images" => ClaimImage::where("claim_id", $claim->id)->get()];
                 $to_name = "Admin";
                 $to_email = "rodriguezwillian95@gmail.com";
 
