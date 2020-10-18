@@ -37,7 +37,7 @@ class ClaimController extends Controller
 
             }
 
-            
+            return response()->json(["success" => true, "msg" => "Reclamo realizado"]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" =>  "Hubo un problema", "err" => $e->getMessage(), "ln" => $e->getLine()]);
