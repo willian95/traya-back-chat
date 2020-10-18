@@ -24,7 +24,7 @@ class ClaimController extends Controller
                 foreach($request->images as $image){
 
                     $randomCode=Str::random(15);
-                    $path = saveImage($request->file,'images/'.$randomCode.'.jpg');
+                    $path = saveImage($image,'images/'.$randomCode.'.jpg');
 
                     $claimImage = new ClaimImage;
                     $claimImage->claim_id = $claim->id;
