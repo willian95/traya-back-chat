@@ -34,7 +34,7 @@ class ClaimController extends Controller
 
                 $data = ["description" => $claim->description, "images" => ClaimImage::where("claim_id", $claim->id)->get()];
                 $to_name = "Admin";
-                $to_email = "rodriguezwillian95@gmail.com";
+                $to_email = "adm.traya@gmail.com";
 
                 \Mail::send("emails.claim", $data, function($message) use ($to_name, $to_email) {
 
