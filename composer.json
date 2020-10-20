@@ -16,7 +16,6 @@
         "laravel/socialite": "3.0",
         "laravel/tinker": "^1.0",
         "maatwebsite/excel": "~2.1.0",
-        "pusher/pusher-php-server": "^3.4",
         "smalot/pdfparser": "^0.14.0",
         "tymon/jwt-auth": "1.0.0-rc.2",
         "willvincent/laravel-rateable": "^1.07"
