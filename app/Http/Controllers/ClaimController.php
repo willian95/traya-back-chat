@@ -67,7 +67,7 @@ class ClaimController extends Controller
     function update(Request $request){
 
         $location = ClaimLocality::where("id", $request->id)->first();
-        $location->emails = $request->email;
+        $location->emails = $request->emails;
         $location->active = 1;
         $location->update();
 
