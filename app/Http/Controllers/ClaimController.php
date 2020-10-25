@@ -58,7 +58,7 @@ class ClaimController extends Controller
 
     function adminFetchLocations(){
 
-        $locations = ClaimLocality::with("location")->all();
+        $locations = ClaimLocality::with("location")->get();
 
         return response()->json(["locations" => $locations]);
 
