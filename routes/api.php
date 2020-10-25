@@ -142,6 +142,8 @@ Route::group(['middleware'=>'jwt.auth'], function () {
   Route::get("/claim/number", "ClaimController@getClaimNumber");
 
   Route::get("/claim-locality", "ClaimController@adminFetchLocations");
+  Route::post("/claim-locality-update", "ClaimController@update");
+  Route::post("/claim-locality-deactivate", "ClaimController@deactivate");
 
 
 //Publicidad

@@ -64,6 +64,27 @@ class ClaimController extends Controller
 
     }
 
+    function update(Request $request){
+
+        $location = ClaimLocality::where("id", $request->id)->first();
+        $location->emails = $request->email;
+        $location->active = 1;
+        $location->update();
+
+        return response()->json(["success" => true, "msg" => "Línea de reclamos actualizada"]);
+
+    }
+
+    function deactivate(Request $request){
+
+        $location = ClaimLocality::where("id", $request->id)->first();
+        $location->active = 0;
+        $location->update();
+
+        return response()->json(["success" => true, "msg" => "Línea de reclamos desactivada"]);
+
+    }
+
     function getClaimNumber(){
         
         return response()->json(["number" => str_pad(Claim::count() + 1,4,"0", STR_PAD_LEFT)]);
