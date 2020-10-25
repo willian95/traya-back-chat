@@ -31,23 +31,37 @@ class ClaimController extends Controller
                 $claimImage->save();
             }
 
-            $data = ["description" => $claim->description, "images" => ClaimImage::where("claim_id", $claim->id)->get()];
-            $to_name = "Admin";
-            $to_email = "adm.traya@gmail.com";
-            if($request->type == 1){
-                $title = "Reclamo";
-            }else{
-                $title = "Sugerencia";
-            }
+            $claimLocality = ClaimLocality::where("location_id", $request->locality)->firstOrFail();
+
+            if($claimLocality){
+                $data = ["description" => $claim->description, "images" => ClaimImage::where("claim_id", $claim->id)->get()];
+                
+                if($request->type == 1){
+                    $title = "Reclamo";
+                }else{
+                    $title = "Sugerencia";
+                }
+
+                $sanitizeEmails = str_replace(" ", "", $claimLocality->emails);
+
+                foreach(explode(",", $sanitizeEmails) as $email){
+                    if($email != ""){
+                        $to_name = "Admin";
+                        $to_email = "adm.traya@gmail.com";
+                        
+                        \Mail::send("emails.claim", $data, function($message) use ($to_name, $to_email, $title) {
+
+                            $message->to($to_email, $to_name)->subject("¡".$title."!");
+                            $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+
+                        });
+                    }
+                }
             
-            \Mail::send("emails.claim", $data, function($message) use ($to_name, $to_email, $title) {
+                return response()->json(["success" => true, "msg" => "Reclamo enviado"]);
+            }
 
-                $message->to($to_email, $to_name)->subject("¡".$title."!");
-                $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-
-            });
-        
-            return response()->json(["success" => true, "msg" => "Reclamo enviado"]);
+            
     
 
         }catch(\Exception $e){
