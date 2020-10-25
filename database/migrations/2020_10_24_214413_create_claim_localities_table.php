@@ -15,7 +15,7 @@ class CreateClaimLocalitiesTable extends Migration
     {
         Schema::create('claim_localities', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger("location_id");
+            $table->integer("location_id")->unsigned();
             $table->string("emails")->nullable();
             $table->boolean("active")->default(false);
             $table->timestamps();
