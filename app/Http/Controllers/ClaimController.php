@@ -58,7 +58,7 @@ class ClaimController extends Controller
                     }
                 }
             
-                return response()->json(["success" => true, "msg" => "Reclamo enviado"]);
+                return response()->json(["success" => true, "msg" => "Reclamo enviado", "test" => explode(",", $sanitizeEmails)]);
             }
 
             
