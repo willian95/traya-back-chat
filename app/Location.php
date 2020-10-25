@@ -14,4 +14,9 @@ class Location extends Model
     'name',
     'description',
   ];
+
+  function claimLocality(){
+    return $this->hasOne(ClaimLocality::class);
+  }
+
 }

@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         /*$this->call(RolesSeeder::class);
         $this->call(StatusesSeeder::class);
         $this->call(ConfigSeeder::class);*/
-        $this->call(AdTypeSeeder::class);
+        //$this->call(AdTypeSeeder::class);
+        $this->call(ClaimLocalitySeeder::class);
     }
 }

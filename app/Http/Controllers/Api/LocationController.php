@@ -11,6 +11,7 @@ use App\Profile;
 use App\Hiring;
 use App\Http\Requests\CreateLocationRequest;
 use App\Http\Requests\UpdateLocationRequest;
+use App\ClaimLocality;
 use App\User;
 
 class LocationController extends BaseApiController
@@ -31,6 +32,11 @@ class LocationController extends BaseApiController
           'data' => $location,
           'msg'=>'Registro satisfactorio'
         ];
+        
+        $claim = new ClaimLocality;
+        $claim->location_id = $location->id;
+        $claim->save();
+
       } catch (\Exception $e) {
         //Message Error
         $status = 500;

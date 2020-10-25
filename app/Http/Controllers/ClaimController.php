@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Claim;
 use App\ClaimImage;
+use App\ClaimLocality;
 
 class ClaimController extends Controller
 {
@@ -52,6 +53,14 @@ class ClaimController extends Controller
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" =>  "Hubo un problema", "err" => $e->getMessage(), "ln" => $e->getLine()]);
         }
+
+    }
+
+    function adminFetchLocations(){
+
+        $locations = ClaimLocality::with("location")->all();
+
+        return response()->json(["locations" => $locations]);
 
     }
 
