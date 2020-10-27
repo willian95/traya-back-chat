@@ -98,6 +98,11 @@ td .es-button-border-2:hover {
                    <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-position:left bottom;" role="presentation"> 
                      <tr style="border-collapse:collapse;"> 
                      </tr> 
+
+                     <p><strong>Nombre: </strong> {{ $name }}</p>
+                     <p><strong>Teléfono: </strong> {{ $phone }}</p>
+                     <p><strong>Correo electrónico: </strong> {{ $email }}</p>
+                     <p><strong>Domicilio: </strong> {{ $domicile }}</p>
                      
                      <tr style="border-collapse:collapse;"> 
                       <td align="center" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#010101;">{{ $description }}</td> 

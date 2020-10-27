@@ -34,7 +34,7 @@ class ClaimController extends Controller
             $claimLocality = ClaimLocality::where("location_id", $request->locality)->firstOrFail();
 
             if($claimLocality){
-                $data = ["description" => $claim->description, "images" => ClaimImage::where("claim_id", $claim->id)->get()];
+                $data = ["description" => $claim->description, "images" => ClaimImage::where("claim_id", $claim->id)->get(), "name" => $request->name, "phone" => $request->phone, "email" => $request->email, "domicile" => $request->domicile];
                 
                 if($request->type == 1){
                     $title = "Reclamo";
