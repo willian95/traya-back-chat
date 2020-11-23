@@ -58,6 +58,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'jwt.auth'], function () {
 Route::get('user/{id}', 'Api\AuthController@dataUser');
 //Obtener servicios
 Route::get('services', 'Api\ServicesController@index');
+
 //Obtener usuarios asociados a un servicio
 Route::get('services_user', 'Api\ServicesUserController@users');
 //Obtener contrataciones
