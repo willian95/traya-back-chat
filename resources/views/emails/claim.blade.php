@@ -99,14 +99,20 @@ td .es-button-border-2:hover {
                      <tr style="border-collapse:collapse;"> 
                      </tr> 
 
-                     <p><strong>Nombre: </strong> {{ $name }}</p>
+                     <p style="text-align: right;"><strong>N° de reclamo: </strong>{{ $claimNumber }}</p>
+
+                     <p style="margin-top: 20px;"><strong>Nombre: </strong> {{ $name }}</p>
                      <p><strong>Teléfono: </strong> {{ $phone }}</p>
                      <p><strong>Correo electrónico: </strong> {{ $email }}</p>
                      <p><strong>Domicilio: </strong> {{ $domicile }}</p>
                      
+                    <p style="margin-top: 20px;"><strong>Comentarios: </strong></p>
+
                      <tr style="border-collapse:collapse;"> 
                       <td align="center" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#010101;">{{ $description }}</td> 
                      </tr> 
+
+                     <p style="margin-top: 20px;"><strong>Imágenes: </strong></p>
                      @foreach($images as $image)
                      <tr style="border-collapse:collapse;"> 
                       <td>
