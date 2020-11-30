@@ -132,7 +132,8 @@ class ServicesUserController extends BaseApiController
     } catch (\Exception $e) {
       $status = 500;
       $response = [
-        'errors' => $e->getMessage()
+        'errors' => $e->getMessage(),
+        "ln" => $e->getLine()
       ];
     }//catch
     return response()->json($response, $status ?? 200);
