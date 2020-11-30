@@ -90,7 +90,7 @@ class ServicesUserController extends BaseApiController
         if($us->profile->image)
 
           $lastLogin = "";
-          $lastLoginDate = Carbon::create($us->last_login);
+          $lastLoginDate = Carbon::parse($us->last_login);
           if($lastLoginDate->lt(Carbon::now()->subDays(7))){
             $lastLogin = "Hace más de una semana";
           }else{
