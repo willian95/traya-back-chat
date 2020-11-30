@@ -73,4 +73,8 @@ class User extends Authenticatable implements JWTSubject
     'device_token' => 'string',
   ];
 
+  protected $date = [
+    "last_login"
+  ];
+
 }

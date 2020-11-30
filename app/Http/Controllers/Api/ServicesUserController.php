@@ -12,6 +12,8 @@ use DB;
 use App\Models\BackpackUser as User;
 use Illuminate\Support\Collection;
 use Auth;
+use Carbon\Carbon;
+
 class ServicesUserController extends BaseApiController
 {
   public function store(Request $request){
@@ -86,6 +88,14 @@ class ServicesUserController extends BaseApiController
             $services_text=", ".$service->service->name;
         }//services
         if($us->profile->image)
+
+          $lastLogin = "";
+          if($us->last_login->lt(Carbon::now()->subDays(7))){
+            $lastLogin = "Hace más de una semana";
+          }else{
+            $lastLogin = $us->last_login;
+          }
+
           $us['image']=url($us->profile->image);
         $us['completed_services']=Hiring::where('bidder_id',$us->id)->whereIn('service_id',$data['services'])->where('status_id',4)->count();
         $us['averageRating']=$us->averageRating;
@@ -93,6 +103,7 @@ class ServicesUserController extends BaseApiController
         $us['averageRatingInt']=(int)$us->averageRating;
         $us['ratingPercent']=$us->ratingPercent(5);
         $us['services_text']=$services_text;
+        $us['last_login']= $lastLogin;
         $comments=Hiring::where('bidder_id',$us->id)->where('status_id',4)->with('latestHistory')->get();
         $arrayComments=[];
         foreach($comments as $com){
