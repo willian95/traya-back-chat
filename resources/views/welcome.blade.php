@@ -311,12 +311,12 @@ overflow­x: hidden !important;
           <p class="shared_content" data-content-guid="u3218-4_0_content">Localidades</p>
         </div>
         @foreach(App\Location::all() as $location)
-        @php dd($location); @endphp
-        <div class="AccordionPanelContent disn clearfix colelem"><!-- group -->
+          {{ $location->name }}
+        {{--<div class="AccordionPanelContent disn clearfix colelem"><!-- group -->
           <div class="clearfix grpelem shared_content"><!-- content -->
             <p>Teodelina</p>
           </div>
-        </div>
+        </div>--}}
         @endforeach
       </li>
      </ul>
