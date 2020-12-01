@@ -310,14 +310,16 @@ overflow­x: hidden !important;
         <div class="AccordionPanelTab clearfix colelem" id="u3218-4"><!-- content -->
           <p class="shared_content" data-content-guid="u3218-4_0_content">Localidades</p>
         </div>
-        @foreach(App\Location::all() as $location)
-          {{ $location->name }}
-        {{--<div class="AccordionPanelContent disn clearfix colelem"><!-- group -->
-          <div class="clearfix grpelem shared_content"><!-- content -->
+        <div class="AccordionPanelContent disn clearfix colelem" id="u3217"><!-- group -->
+          <div class="clearfix grpelem shared_content" id="u3240-4" data-content-guid="u3240-4_content"><!-- content -->
             <p>Teodelina</p>
           </div>
-        </div>--}}
-        @endforeach
+        </div>
+        <div class="AccordionPanelContent disn clearfix colelem" id="u3217"><!-- group -->
+          <div class="clearfix grpelem shared_content" id="u3240-4" data-content-guid="u3240-4_content"><!-- content -->
+            <p>Pergamino</p>
+          </div>
+        </div>
       </li>
      </ul>
     </div>
