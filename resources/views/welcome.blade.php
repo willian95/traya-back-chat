@@ -1,10 +1,4 @@
-@if(strpos(url()->current(), "http://") > -1)
 
-  <script>
-    window.location.href="https://trata.com.ar"
-  </script>
-
-@endif
 
 <!DOCTYPE html>
 <html class="nojs html css_verticalspacer" lang="es-ES">
@@ -316,13 +310,15 @@ overflow­x: hidden !important;
         <div class="AccordionPanelTab clearfix colelem" id="u3218-4"><!-- content -->
           <p class="shared_content" data-content-guid="u3218-4_0_content">Localidades</p>
         </div>
+        @foreach(App\Location::all() as $location)
         <div class="AccordionPanelContent disn clearfix colelem" id="u3217"><!-- group -->
-          @foreach(App\Location::all() as $location)
+          
           <div class="clearfix grpelem shared_content" id="u3240-4" data-content-guid="u3240-4_content"><!-- content -->
             <p>{{ $location->name }}</p>
           </div>
-          @endforeach
+          
         </div>
+        @endforeach
       </li>
      </ul>
     </div>
