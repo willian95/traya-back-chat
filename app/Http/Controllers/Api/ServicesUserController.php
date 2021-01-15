@@ -87,6 +87,22 @@ class ServicesUserController extends BaseApiController
 
   }
 
+  public function deleteImage(Request $request){
+
+    try{
+
+      $user=Auth::guard('api')->user() ? Auth::guard('api')->user() : Auth::user();
+
+      UserImage::where("user_id", $user->id)->where("id", $request->id)->first()->delete(); 
+//
+      return response()->json(["success" => true, "msg" => "Imágen eliminada"]);
+
+    }catch(\Exception $e){
+      return response()->json(["success" => false, "error" => $e->getMessage(), "ln" => $e->getLine()]);
+    }
+
+  }
+
 
   public function users(Request $request){
     try {
