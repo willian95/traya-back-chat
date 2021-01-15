@@ -133,6 +133,8 @@ Route::group(['middleware'=>'jwt.auth'], function () {
   //Eliminar una localidad
   Route::delete('locations/{id}', 'Api\LocationController@delete');
 
+  Route::post("user/secondary-image/store", 'Api\ServicesUserController@storeImage');
+
 });//middle auth
 
   //Actualizar una localidad
