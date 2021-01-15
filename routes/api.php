@@ -167,3 +167,5 @@ Route::post("/message/conversation/delete", "ChatController@deleteConversation")
 Route::post("/message/conversation/delete/all", "ChatController@deleteAll");
 Route::post("/my-chats", "ChatController@chats");
 
+Route::get("user/secondary-image/fetch-by-user/{id}", 'Api\ServicesUserController@fetchImagesByUser');
+

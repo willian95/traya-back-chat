@@ -87,6 +87,20 @@ class ServicesUserController extends BaseApiController
 
   }
 
+  public function fetchImagesByUser($id){
+
+    try{
+
+      $images = UserImage::where("user_id", $id)->get(); 
+//
+      return response()->json(["images" => $images]);
+
+    }catch(\Exception $e){
+      return response()->json(["success" => false, "error" => $e->getMessage(), "ln" => $e->getLine()]);
+    }
+
+  }
+
   public function deleteImage(Request $request){
 
     try{
