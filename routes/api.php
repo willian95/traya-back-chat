@@ -133,8 +133,6 @@ Route::group(['middleware'=>'jwt.auth'], function () {
   //Eliminar una localidad
   Route::delete('locations/{id}', 'Api\LocationController@delete');
 
-  Route::post("user/secondary-image/store", 'Api\ServicesUserController@storeImage');
-
 });//middle auth
 
   //Actualizar una localidad
@@ -163,4 +161,6 @@ Route::post("/message/delete", "ChatController@deleteMessage");
 Route::post("/message/conversation/delete", "ChatController@deleteConversation");
 Route::post("/message/conversation/delete/all", "ChatController@deleteAll");
 Route::post("/my-chats", "ChatController@chats");
+
+Route::post("user/secondary-image/store", 'Api\ServicesUserController@storeImage');
 
