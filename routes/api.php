@@ -135,6 +135,7 @@ Route::group(['middleware'=>'jwt.auth'], function () {
   Route::delete('locations/{id}', 'Api\LocationController@delete');
 
   Route::post("user/secondary-image/store", 'Api\ServicesUserController@storeImage');
+  Route::get("user/secondary-image/fetch", 'Api\ServicesUserController@fetchImages');
 
 });//middle auth
 
