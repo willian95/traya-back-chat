@@ -50,16 +50,12 @@ class ServicesUserController extends BaseApiController
 
   }//store
 
-  public function getAuthUser($request){
-    $user=Auth::guard('api')->user() ? Auth::guard('api')->user() : Auth::user();
-    return $user;
-  }
 
   public function storeImage(Request $request){
 
     try{
 
-      $user = $this->getAuthUser($request);
+      $user=Auth::guard('api')->user() ? Auth::guard('api')->user() : Auth::user();
 
       $userImage = new UserImage;
       $userImage->image = saveImage($request->image,'profiles/'.uniqid().'.jpg');
