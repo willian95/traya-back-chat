@@ -60,6 +60,7 @@ class ServicesUserController extends BaseApiController
 
       $userImage = new UserImage;
       $userImage->image = url('/').'/'.saveImage($request->image,'profiles/'.uniqid().'.jpg');
+      $userImage->user_id = $user->id;
       $userImage->save();
 //
       return response()->json(["success" => true, "msg" => "Imagen almacenada"]);
@@ -69,6 +70,7 @@ class ServicesUserController extends BaseApiController
     }
 
   }
+
 
   public function users(Request $request){
     try {
