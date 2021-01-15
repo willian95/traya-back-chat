@@ -11,6 +11,7 @@ use App\Http\Requests\GetServicesUserRequest;
 use DB;
 use App\Models\BackpackUser as User;
 use Illuminate\Support\Collection;
+use App\UserImage;
 use Auth;
 use Carbon\Carbon;
 
@@ -49,6 +50,25 @@ class ServicesUserController extends BaseApiController
     return response()->json($response, $status ?? 200);
 
   }//store
+
+
+  public function storeImage(Request $request){
+
+    try{
+
+      $user=Auth::guard('api')->user() ? Auth::guard('api')->user() : Auth::user();
+
+      $userImage = new UserImage;
+      $userImage->image = saveImage($request->image,'profiles/'.uniqid().'.jpg');
+      $userImage->save();
+//
+      return response()->json(["success" => true, "msg" => "Imagen almacenada"]);
+
+    }catch(\Exception $e){
+      return repsonse()->json(["success" => false, "error" => $e->getMessage(), "ln" => $e->getLine()]);
+    }
+
+  }
 
   public function users(Request $request){
     try {

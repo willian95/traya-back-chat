@@ -1,10 +1,4 @@
-@if(strpos(url()->current(), "http://") > -1)
 
-  <script>
-    window.location.href="https://trata.com.ar"
-  </script>
-
-@endif
 
 <!DOCTYPE html>
 <html class="nojs html css_verticalspacer" lang="es-ES">
@@ -99,7 +93,7 @@ overflow­x: hidden !important;
        </div>
       </div>
       <a class="nonblock nontext museBGSize grpelem shared_content" id="u7672" href="https://play.google.com/store/apps/details?id=com.ionicframework.traya&hl=es" target="_blank" data-content-guid="u7672_content"><!-- simple frame --></a>
-      <a class="nonblock nontext museBGSize grpelem shared_content" id="u7673" href="https://www.apple.com/la/ios/app-store/" data-content-guid="u7673_content"><!-- simple frame --></a>
+      <a class="nonblock nontext museBGSize grpelem shared_content" id="u7673" href="https://apps.apple.com/ar/app/traya/id1519461985" data-content-guid="u7673_content"><!-- simple frame --></a>
      </div>
      <div class="browser_width colelem shared_content" id="u395-bw" data-content-guid="u395-bw_content">
       <div class="museBGSize" id="u395"><!-- column -->
@@ -200,7 +194,7 @@ overflow­x: hidden !important;
         </div>
         <div class="clearfix colelem" id="pu2583"><!-- group -->
          <a class="nonblock nontext museBGSize grpelem shared_content" id="u2583" href="https://play.google.com/store/apps/details?id=com.ionicframework.traya&hl=es" data-content-guid="u2583_content"><!-- simple frame --></a>
-         <a class="nonblock nontext museBGSize grpelem shared_content" id="u2594" href="https://www.apple.com/la/ios/app-store/" data-content-guid="u2594_content"><!-- simple frame --></a>
+         <a class="nonblock nontext museBGSize grpelem shared_content" id="u2594" href="https://apps.apple.com/ar/app/traya/id1519461985" data-content-guid="u2594_content"><!-- simple frame --></a>
         </div>
        </div>
       </div>
@@ -311,7 +305,22 @@ overflow­x: hidden !important;
      <a class="nonblock nontext anim_swing clearfix shared_content" id="u149-4" href="index.html#descarga" data-content-guid="u149-4_content"><!-- content --><p>Descarga</p></a>
      <a class="nonblock nontext anim_swing clearfix shared_content" id="u154-4" href="index.html#contactos" data-content-guid="u154-4_content"><!-- content --><p>Contactos</p></a>
      <ul class="AccordionWidget clearfix" id="accordionu3215"><!-- vertical box -->
-      <li class="AccordionPanel clearfix colelem" id="u3216"><!-- vertical box --><div class="AccordionPanelTab clearfix colelem" id="u3218-4"><!-- content --><p class="shared_content" data-content-guid="u3218-4_0_content">Localidad</p></div><div class="AccordionPanelContent disn clearfix colelem" id="u3217"><!-- group --><div class="clearfix grpelem shared_content" id="u3240-4" data-content-guid="u3240-4_content"><!-- content --><p>Teodelina</p></div></div></li>
+      
+      <li class="AccordionPanel clearfix colelem" id="u3216"><!-- vertical box -->
+        <div class="AccordionPanelTab clearfix colelem" id="u3218-4"><!-- content -->
+          <p class="shared_content" data-content-guid="u3218-4_0_content">Localidades</p>
+        </div>
+        <div class="AccordionPanelContent disn clearfix colelem" id="u3217"><!-- group -->
+          <div class="clearfix grpelem shared_content" id="u3240-4" data-content-guid="u3240-4_content"><!-- content -->
+            <p>Teodelina</p>
+          </div>
+        </div>
+        <div class="AccordionPanelContent disn clearfix colelem" id="u3218-sadasd"><!-- group -->
+          <div class="clearfix grpelem shared_content" id="u3241-4" data-content-guid="u3241-4_content"><!-- content -->
+            <p>Pergamino</p>
+          </div>
+        </div>
+      </li>
      </ul>
     </div>
     <div class="verticalspacer" data-offset-top="5686" data-content-above-spacer="5685" data-content-below-spacer="0"></div>
