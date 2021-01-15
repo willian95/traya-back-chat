@@ -59,7 +59,7 @@ class ServicesUserController extends BaseApiController
       $user=Auth::guard('api')->user() ? Auth::guard('api')->user() : Auth::user();
 
       $userImage = new UserImage;
-      $userImage->image = saveImage($request->image,'profiles/'.uniqid().'.jpg');
+      $userImage->image = url().'/'.saveImage($request->image,'profiles/'.uniqid().'.jpg');
       $userImage->save();
 //
       return response()->json(["success" => true, "msg" => "Imagen almacenada"]);
