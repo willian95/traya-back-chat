@@ -65,7 +65,7 @@ class ServicesUserController extends BaseApiController
       return response()->json(["success" => true, "msg" => "Imagen almacenada"]);
 
     }catch(\Exception $e){
-      return repsonse()->json(["success" => false, "error" => $e->getMessage(), "ln" => $e->getLine()]);
+      return response()->json(["success" => false, "error" => $e->getMessage(), "ln" => $e->getLine()]);
     }
 
   }
