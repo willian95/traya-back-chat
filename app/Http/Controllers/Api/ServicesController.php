@@ -20,6 +20,11 @@ class ServicesController extends BaseApiController
         $services->where('name', 'like', "%$filters->name%");
       
       $services->orderBy('name','ASC');
+
+      if(isset($filters->localtion_id)){
+        $services->whereIn("location_id", [0, $filters->location_id]);
+      }
+
       $services=$services->get();
       //dd($filters);
       foreach($services as &$service){
@@ -29,12 +34,9 @@ class ServicesController extends BaseApiController
         }
         if(isset($filters->location_id)){
           $location_id=$filters->location_id;
-          return response()->json("entre");
           $service2=Service::query();
           $service2->where('id',$service->id);
-          $items = $service2->with('users.user.profile')->whereHas('users.user.profile', function($query) use($location_id){
-            $query->where('profiles.location_id',$location_id);
-          })->get();
+          $items = $service2->with('users.user.profile')->whereHas('users.user.profile')->get();
           $countWorkers = 0;
           foreach($items as $item){
 
