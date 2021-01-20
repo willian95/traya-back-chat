@@ -95,10 +95,7 @@ class HiringsController extends BaseApiController
         $hirings=Hiring::query();
         $user=User::find($user_id);
         if($user->hasRole('Demandante'))
-        {
-          return response()->json("entre");
           $hirings->where('applicant_id',$user_id);
-        }
         else
           $hirings->where('bidder_id',$user_id);
         $filters=isset($request->filters) ? json_decode($request->filters) : (object)[];
