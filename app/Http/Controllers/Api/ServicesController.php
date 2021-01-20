@@ -29,6 +29,7 @@ class ServicesController extends BaseApiController
         }
         if(isset($filters->location_id)){
           $location_id=$filters->location_id;
+          return response()->json("entre");
           $service2=Service::query();
           $service2->where('id',$service->id);
           $items = $service2->with('users.user.profile')->whereHas('users.user.profile', function($query) use($location_id){
