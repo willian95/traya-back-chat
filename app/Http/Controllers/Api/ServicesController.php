@@ -21,7 +21,7 @@ class ServicesController extends BaseApiController
       
       $services->orderBy('name','ASC');
 
-      if(isset($filters->localtion_id)){
+      if(isset($filters->location_id)){
         $services->whereIn("location_id", [0, $filters->location_id]);
       }
 
