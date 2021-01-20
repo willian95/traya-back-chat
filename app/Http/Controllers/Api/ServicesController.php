@@ -31,9 +31,9 @@ class ServicesController extends BaseApiController
           $location_id=$filters->location_id;
           $service2=Service::query();
           $service2->where('id',$service->id);
-          $items = $service2->with('users.user.profile')->whereHas('users.user.profile')->get();/*,function($query) use($location_id){
+          $items = $service2->with('users.user.profile')->whereHas('users.user.profile', function($query) use($location_id){
             $query->where('profiles.location_id',$location_id);
-          });*/
+          })->get();
           $countWorkers = 0;
           foreach($items as $item){
 
