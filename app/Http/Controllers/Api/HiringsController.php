@@ -366,7 +366,7 @@ class HiringsController extends BaseApiController
           fcm()
               ->to($deviceToken)
               ->data([
-                  'title' => "Atención",
+                  'title' => "📍Atención Comunidad Traya",
                   'body' => '¡Genial! El trabajador '.$hiring->bidder->name.' ha notificado que está disponible para el servicio '.$hiring->service->name.'.',
                   "page" => "hiring",
                   "hiring_id" => $hiring->id
@@ -429,7 +429,7 @@ class HiringsController extends BaseApiController
           fcm()
             ->to($deviceToken)
             ->data([
-                'title' => "Atención",
+                'title' => "📍Atención Comunidad Traya",
                 'body' => '¡Genial! '. $hiring->applicant->name.' ha calificado tu servicio de '.$hiring->service->name.', su calificación y comentarios apareceran en tu perfil.',
                 "page" => "hiring",
                 "hiring_id" => $hiring->id
