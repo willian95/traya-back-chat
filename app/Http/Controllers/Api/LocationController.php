@@ -17,7 +17,7 @@ use App\User;
 class LocationController extends BaseApiController
 {
     public function index(){
-      $locations=Location::orderBy('name','desc')->get();
+      $locations=Location::orderBy('name')->get();
       return response()->json(['data'=>$locations],200);
     }//index()
 
