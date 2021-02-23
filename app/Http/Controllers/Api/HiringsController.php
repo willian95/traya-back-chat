@@ -95,13 +95,14 @@ class HiringsController extends BaseApiController
         $hirings=Hiring::query();
         $user=User::find($user_id);
         if($user->hasRole('Demandante'))
-          $hirings->where('applicant_id',$user_id);
+          $hirings->where('applicant_id',$user_id)->where("deleted_for_applicant", "<>", "1");
         else
-          $hirings->where('bidder_id',$user_id);
+          $hirings->where('bidder_id',$user_id)->where("deleted_for_bidder", "<>", "1");
         $filters=isset($request->filters) ? json_decode($request->filters) : (object)[];
         if(isset($filters->status_id)){
           is_array($filters->status_id) ? true : $filters->status_id = [$filters->status_id];
           $hirings->whereIn('status_id',$filters->status_id);
+          
         }
         $orderBy="DESC";
         if(isset($request->orderBy)){
@@ -601,27 +602,18 @@ class HiringsController extends BaseApiController
 
         $hiringsArray = [];
         if($request->user_rol == 1){
-          
-          $hirings = Hiring::where("applicant_id", $request->user_id)->where("status_id", ">=", 4)->get();
-          foreach($hirings as $hiring){
-            array_push($hiringsArray, $hiring->id);
-          }
 
-          Hiring::where("applicant_id", $request->user_id)->where("status_id", ">=", 4)->delete();
+          Hiring::where("applicant_id", $request->user_id)->update([
+            "deleted_for_applicant" => 1
+          ]);
         
         }else if($request->user_rol == 2){
 
-          $hirings = Hiring::where("bidder_id", $request->user_id)->where("status_id", ">=", 4)->get();
-          foreach($hirings as $hiring){
-            array_push($hiringsArray, $hiring->id);
-          }
-
-          Hiring::where("bidder_id", $request->user_id)->where("status_id", ">=", 4)->delete();
+          Hiring::where("bidder_id", $request->user_id)->update([
+            "deleted_for_bidder" => 1
+          ]);
 
         }
-
-        
-        HiringHistory::whereIn("hiring_id", $hiringsArray)->delete();
 
         return response()->json(["success" => true]);
 
@@ -637,8 +629,17 @@ class HiringsController extends BaseApiController
 
       try{
 
-        Hiring::where("id", $request->hiring_id)->delete();
-        HiringHistory::where("hiring_id", $request->hiring_id)->delete();
+        $hiring = Hiring::where("id", $request->hiring_id)->first();
+
+        if($hiring->applicant_id == $request->user_id){
+          $hiring->deleted_for_applicant = 1;
+        }else if($hiring->bidder_id == $request->user_id){
+          $hiring->deleted_for_bidder = 1;
+        }
+
+        $hiring->update();
+
+        //HiringHistory::where("hiring_id", $request->hiring_id)->delete();
 
         return response()->json(["success" => true]);
 

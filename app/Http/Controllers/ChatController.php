@@ -26,7 +26,7 @@ class ChatController extends Controller
             fcm()
                 ->to($deviceToken)
                 ->data([
-                    'title' => "Atención",
+                    'title' => "📍Atención Comunidad Traya",
                     'body' => $sender->name." te ha enviado un mensaje",
                     "type" => "chat",
                     "bidder_id" => $sender->id
