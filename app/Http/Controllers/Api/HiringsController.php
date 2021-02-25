@@ -603,13 +603,13 @@ class HiringsController extends BaseApiController
         $hiringsArray = [];
         if($request->user_rol == 1){
 
-          Hiring::where("applicant_id", $request->user_id)->update([
+          Hiring::where("applicant_id", $request->user_id)->whereIn("status_id", [4, 5])->update([
             "deleted_for_applicant" => 1
           ]);
         
         }else if($request->user_rol == 2){
 
-          Hiring::where("bidder_id", $request->user_id)->update([
+          Hiring::where("bidder_id", $request->user_id)->whereIn("status_id", [4, 5])->update([
             "deleted_for_bidder" => 1
           ]);
 
