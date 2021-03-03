@@ -25,7 +25,7 @@ class UpdateLocationRequest extends FormRequest
     {
       return [
         'name'=>'required|max:80',
-        'description'=>'max:170',
+        'description'=>'max:250',
       ];
     }
 }
